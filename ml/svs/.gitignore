@@ -17,4 +17,3 @@ project.log
 references
 runs/
 tensorboard.log
-*.pt
