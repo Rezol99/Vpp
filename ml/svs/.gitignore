@@ -6,7 +6,6 @@ __pycache__
 /engine.egg-info
 engine/hifi_gan/do_02500000
 /tmp
-/datasets
 /default
 /_default
 optuna_sampling
