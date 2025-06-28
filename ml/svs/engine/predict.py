@@ -43,7 +43,7 @@ class Predictor:
         mel_stats = dataset_stats.get("mel")
         model = SVSModel(TrainConfig.phoneme_emb_dim, prediction=True).to(device)
         model.eval()
-        checkpoint = model.load_latest()
+        checkpoint = model.load("./checkpoints/product/checkpoint.pth")
 
         diffuser = Diffuser(device=device, debug=True, fast_inference=True)
 

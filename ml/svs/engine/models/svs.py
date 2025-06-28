@@ -95,7 +95,7 @@ class SVSModel(nn.Module):
         torch.save({"model_state_dict": self.state_dict()}, epoch_path)
     
     def load(self, checkpoint, map_location=None):
-        state = torch.load(checkpoint, map_location=map_location)
+        state = torch.load(checkpoint, map_location=map_location, weights_only=False)
         self.load_state_dict(state["model_state_dict"])
         return checkpoint
 
