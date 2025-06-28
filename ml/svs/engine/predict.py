@@ -28,7 +28,12 @@ CFG_SCALE = 3
 # TODO:　prevも考慮しないと初めに無音があったときの対応ができない
 class Predictor:
     def __init__(self):
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+        elif torch.backends.mps.is_available():
+            device = torch.device("mps")
+        else:
+            device = torch.device("cpu")
         dataset_stats = DatasetStats()
         phoneme_indexes = PhonemeIndexes()
         grouped_parts = GroupedParts(prediction=True)
@@ -43,7 +48,7 @@ class Predictor:
         mel_stats = dataset_stats.get("mel")
         model = SVSModel(TrainConfig.phoneme_emb_dim, prediction=True).to(device)
         model.eval()
-        checkpoint = model.load("./checkpoints/product/checkpoint.pth")
+        checkpoint = model.load(checkpoint="./checkpoints/product/checkpoint.pth", map_location=device)
 
         diffuser = Diffuser(device=device, debug=True, fast_inference=True)
 
