@@ -1,6 +1,3 @@
 [submodule "app/external/JUCE"]
 	path = app/external/JUCE
 	url = https://github.com/juce-framework/JUCE
-[submodule "app/External/JUCE"]
-	path = app/External/JUCE
-	url = https://github.com/juce-framework/JUCE.git
